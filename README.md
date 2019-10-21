@@ -32,7 +32,7 @@ $ curl --request GET
  oauth_token="access-token-for-authed-user", oauth_version="1.0"'
 ```
 
-L'objectif est de retranscrire cette requête à partir d'un code PHP. Selon l'environnement de développement (serveur web) que vous avez, le module *php-curl* sera nécessaire. En effet, ce module vous permet de réaliser commandes cURL.
+L'objectif est de retranscrire cette requête à partir d'un code PHP. Selon l'environnement de développement (serveur web) que vous avez, le module *php-curl* sera nécessaire. En effet, ce module vous permet de réaliser des commandes cURL.
 
 ```
 $feed = curl_init(); // Initialisation d'une session cURL.
