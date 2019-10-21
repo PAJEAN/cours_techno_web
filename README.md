@@ -19,9 +19,54 @@ La création d'une *Apps* est obligatoire pour obtenir un ensemble de clés d'ac
 
 ![Access token](images/access-token.png "Générer les clés d'accès.")
 
-## Créer une requête pour récupérer des tweets
+## Récupérer des tweets
 
-Il existe plusieurs points d'entrée selon les traitements ou les informations que vous voulez récupérer  (la liste de tous les points d'entrée est disponible à cette [adresse](https://developer.twitter.com/en/docs)). Concernant la recherche et la récupération de tweets, le point d'entrée se trouve à l'adresse suivante: https://api.twitter.com/1.1/search/tweets.json . La procédure pour réaliser une requête afin d'obtenir un retour JSON se trouve sur cette [page](https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets). Cette dernière indique de réaliser la requête suivante par l'intermédiaire d'une commande cURL:
+Selon la nature des données que vous voulez récupérer, l'URL de l'API diffère (la liste des API est disponible à cette [adresse](https://developer.twitter.com/en/docs)).
+Par exemple, pour rechercher et récupérer des tweets, nous devons adresser une requête à l'adresse suivante: **https://api.twitter.com/1.1/search/tweets.json**. Les données retournées par les API à la suite de vos requêtes sont au format JSON. C'est un format de données simple et efficace qui permet de stocker des données de manière structurée (hiérarchisée).
+
+Le fichier *index.php* vous permet de récupérer les Tweets et les Réponses associés à un nom de compte donné. Pour cela, vous devez télécharger les fichiers *index.php* et *TwitterAPIExchange.php*, compléter les champs suivants avec les données de connexion de votre *App*:
+
+```
+$settings = array(
+    "oauth_access_token" => "YOUR_OAUTH_ACCESS_TOKEN",
+    "oauth_access_token_secret" => "YOUR_OAUTH_ACCESS_TOKEN_SECRET",
+    "consumer_key" => "YOUR_CONSUMER_KEY",
+    "consumer_secret" => "YOUR_CONSUMER_SECRET"
+);
+```
+
+et enfin, renseigner un nom de compte Twitter (*e.g.* MonsieurDream) pour voir apparaître la description de ses Tweets et Réponses.
+
+```
+$json = getTweets($settings, "MonsieurDream");
+```
+
+La fonction *getTweets()* exploite l'utilitaire cURL du module *php-curl*.
+Vérifier la viabilité de votre environnement en accédent à la page *index.php* sur votre navigateur (vous devez activer votre serveur local PHP au préalable).
+
+Si vous obtenez la liste des Tweets, votre environnement est apte à effectuer des requêtes vers l'API Twitter. Sinon, vous devez installer et configurer l'utilitaire cURL.
+
+## Comprendre les données renvoyées par l'API Twitter
+
+L'API Twitter renvoie des données au format JSON. Commenter les lignes 17, 19, 20, 21 et 22 du fichier *index.php*. Recharger ensuite votre page. Vous devez obtenir un ensemble de données compactes. Afin de visualiser ces données, copier/coller ces données et rendez-vous au lien suivant: http://jsonviewer.stack.hu/ . Dans l'onglet *Text* coller vos données et appuyer sur *Format*. Vos données s'affichent désormais de manière indentée. Appuyer sur l'onglet *Viewer*. Ce dernier permet de visualiser la structure hiérarchique de vos données.
+
+![JSON](images/json-format.png "Représentation JSON.")
+
+Sur la figure ci-dessus, vous pouvez visualiser les symboles "[]" et "{}" respectivement à côté de *statuses* et de *0*. Les crochets indiquent une liste (un *array*), soit un tableau de valeurs dont les indices sont des nombres (de 0 à n). Les accolades indiquent un dictionnaire soit une liste de clés/valeurs dans laquelle une valeur est indexée par une clé (chaîne de caractères).
+
+Par exemple, si vous voulez accéder à l'attribut *text* vous pouvez écrire:
+
+```
+$json["statuses"][0]["text"];
+```
+
+où *$json* est une variable qui stocke le retour de l'API Twitter.
+
+## Comprendre la classe *TwitterAPIExchange.php*
+
+Les requêtes adressées aux API doivent respecter un format particulier détaillé à cette [adresse](https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets).
+Cette page exploite l'utilitaire cURL pour envoyer les requêtes. Le format de la requête est sous la forme suivante:
+
 
 ```
 $ curl --request GET
@@ -95,8 +140,7 @@ if (count($params) > 0)
 }
 ```
 
-Vous pouvez exploiter le fichier *index.php* présent sur ce dépôt. Pour aller plus loin (réaliser des requêtes *POST* ou gérer les erreurs) vous pouvez vous référer à ce [dépôt](https://github.com/J7mbo/twitter-api-php) et à la classe *TwitterAPIExchange.php*. Concernant les paramètres GET d'une requête vous pouvez vous référer à cette [page](https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets) ou bien cette [page](https://developer.twitter.com/en/docs/tweets/search/guides/standard-operators).
-
+La classe *TwitterAPIExchange.php* est issue de ce [dépôt](https://github.com/J7mbo/twitter-api-php). Concernant les paramètres GET d'une requête, vous pouvez vous référer à cette [page](https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets) ou bien cette [page](https://developer.twitter.com/en/docs/tweets/search/guides/standard-operators).
 
 
 
