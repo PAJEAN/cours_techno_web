@@ -309,6 +309,11 @@ class TwitterAPIExchange
         }
 
         $feed = curl_init();
+
+        // Add to avoid the SSL error.
+        curl_setopt($feed, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($feed, CURLOPT_SSL_VERIFYPEER, false);
+
         curl_setopt_array($feed, $options);
         $json = curl_exec($feed);
 

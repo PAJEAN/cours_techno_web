@@ -1,3 +1,24 @@
+# Préambule
+
+* PHP doit être installé sur votre machine ([Grafikart](https://www.youtube.com/watch?v=OVTnj3hcHuc)).
+* L'installation ci-dessus vous permet d'exécuter la commande suivante au sein de l'invite de commandes Windows.
+
+```
+php -S localhost:80
+```
+
+* L'extension cURL doit être renseignée dans le fichier php.ini ([aide 1](https://www.julp.fr/articles/15-php-l-extension-curl.html), [aide 2](https://www.codeooze.com/coding/php-curl-on-windows/)).
+
+
+Par exemple:
+
+```
+extension=D:\PHP\ext\php_curl.dll
+```
+
+* Si vous rencontrez un problème de certificat SSL vous pouvez vous diriger vers ce [lien](https://thisinterestsme.com/php-curl-ssl-certificate-error/).
+
+
 # API Twitter
 
 Ce dépôt a pour objectif de vous guider dans la mise en place et l'utilisation de l'[API standard](https://developer.twitter.com/en/docs/basics/getting-started) de Twitter. Cette API permet notamment de poster et récupérer des tweets, de suivre, rechercher et obtenir des informations sur des utilisateurs ou bien de récupérer les tendances actuelles.
