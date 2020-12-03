@@ -424,6 +424,19 @@ function getTweets($settings, $name){
     $json = $twitter->setGetfield($getfield)
         ->buildOauth($url, $requestMethod)
         ->performRequest();
+    
+    return json_decode($json, true);
+}
 
+function getTrends($settings, $id){
+    $url = "https://api.twitter.com/1.1/trends/place.json";
+    $getfield = "?id=" . $id;
+    $requestMethod = "GET";
+
+    $twitter = new TwitterAPIExchange($settings);
+    $json = $twitter->setGetfield($getfield)
+        ->buildOauth($url, $requestMethod)
+        ->performRequest();
+        
     return json_decode($json, true);
 }

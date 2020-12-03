@@ -7,7 +7,7 @@
 php -S localhost:80
 ```
 
-* L'extension cURL doit être renseignée dans le fichier php.ini ([aide 1](https://www.julp.fr/articles/15-php-l-extension-curl.html), [aide 2](https://www.codeooze.com/coding/php-curl-on-windows/)).
+* L'extension cURL doit être renseignée dans le fichier php.ini ([aide 1](https://www.julp.fr/articles/15-php-l-extension-curl.html), [aide 2](https://www.codeooze.com/coding/php-curl-on-windows/)). Si vous n'avez pas de fichier intitulé php.ini, faites un copier/coller du fichier php.ini-production et renommez le en php.ini.
 
 
 Par exemple:
