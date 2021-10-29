@@ -17,7 +17,7 @@ $settings = array(
 <?php
 
 /* Récupérer les Tweets & réponses d'un compte (période maximale de 7jours). */
-$json = getTweets($settings, "MonsieurDream");
+$json = getTweets($settings, "monsieurdream");
 
 /* Vérifier que la requête s'est bien déroulée et si des Tweets ont été récupérés */
 if(isset($json["statuses"]) && count($json["statuses"]) > 0){
@@ -29,10 +29,26 @@ if(isset($json["statuses"]) && count($json["statuses"]) > 0){
 
 ?>
 
-<h1> Les tendances à Londres </h1>
+<h1> Les hashtags #fromage ou #vin des comptes @mondialfromage ou @FromagesAOPAuv </h1>
+
 <?php
 
-$json = getTrends($settings, "44418");
+$json = getHashtags($settings, "vin");
+
+if(isset($json["statuses"]) && count($json["statuses"]) > 0){
+    /* Récupération de la description des Tweets */
+    foreach($json["statuses"] as $key => $value){
+        echo "- " . $json["statuses"][$key]["full_text"] . "<br>";
+    }
+}
+
+?>
+
+<h1> Les tendances à Paris </h1>
+
+<?php
+
+$json = getTrends($settings, "615702");
 
 if(count($json) > 0 && isset($json[0]["trends"])){
     /* Récupération de la description des Tweets */

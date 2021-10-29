@@ -414,7 +414,6 @@ class TwitterAPIExchange
     }
 }
 
-
 function getTweets($settings, $name){
     $url = "https://api.twitter.com/1.1/search/tweets.json";
     $getfield = "?q=from:" . $name;
@@ -424,7 +423,7 @@ function getTweets($settings, $name){
     $json = $twitter->setGetfield($getfield)
         ->buildOauth($url, $requestMethod)
         ->performRequest();
-    
+
     return json_decode($json, true);
 }
 
@@ -440,3 +439,34 @@ function getTrends($settings, $id){
         
     return json_decode($json, true);
 }
+
+// https://developer.twitter.com/en/docs/twitter-api/v1/tweets/search/guides/standard-operators
+function getHashtags($settings, $hashtag){
+    $url = "https://api.twitter.com/1.1/search/tweets.json";
+    $getfield = "?q=(#" . $hashtag . " OR #fromage) (from:mondialfromage OR from:FromagesAOPAuv) -filter:retweets&count=100&tweet_mode=extended";
+    $requestMethod = "GET";
+
+    $twitter = new TwitterAPIExchange($settings);
+    $json = $twitter->setGetfield($getfield)
+        ->buildOauth($url, $requestMethod)
+        ->performRequest();
+    // echo $json;
+    return json_decode($json, true);
+}
+
+function postTweet($settings, $msg){
+    $url = "https://api.twitter.com/1.1/statuses/update.json";
+    $getfield = "?status=" . $msg;
+    $requestMethod = "POST";
+
+    $twitter = new TwitterAPIExchange($settings);
+    $json = $twitter->setGetfield($getfield)
+        ->buildOauth($url, $requestMethod)
+        ->performRequest();
+    var_dump($twitter);
+    echo $json;
+
+    return json_decode($json, true);
+}
+
+// Pagination with the max_id parameter (returns results with an ID less than (that is, older than) or equal to the specified ID) and may be result_type=recent (current default value is "mixed").

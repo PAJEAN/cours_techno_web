@@ -1,7 +1,15 @@
 # Préambule
 
 * PHP doit être installé sur votre machine ([Grafikart](https://www.youtube.com/watch?v=OVTnj3hcHuc)).
-* L'installation ci-dessus vous permet d'exécuter la commande suivante au sein de l'invite de commandes Windows.
+* L'installation ci-dessus vous permet d'exécuter la commande suivante au sein de l'invite de commandes Windows. Pour obtenir l'invite de commandes, vous pouvez taper "invite de commandes" dans la barre de recherche Windows.
+
+* Avant d'exécuter la commande ci-dessous, vous devez vous déplacer au sein du fichier dans lequel vous avez votre code source. Pour cela, utiliser la commande **cd** au sein de l'invite de commande puis copier le lien de l'emplacement de votre fichier (*e.g.* "C:\Users\Admin\Documents\Twitter") et coller le après la commande.
+
+```
+cd C:\Users\Admin\Documents\Twitter
+```
+
+Appuyez sur entrée. Ensuite:
 
 ```
 php -S localhost:80
@@ -82,6 +90,89 @@ $json["statuses"][0]["text"];
 ```
 
 où *$json* est une variable qui stocke le retour de l'API Twitter.
+
+## Petite piqûre de rappel: les fondamentaux de PHP
+
+### Les variables
+
+```
+$var = 'Ma variable';
+$bool = true; // ou false insensibles à la casse.
+```
+
+### Les tableaux
+
+```
+$tab1 = ['a', 'b']; // ou array('a', 'b');
+```
+
+ou 
+
+```
+$tab[] = 'a'; // Ajoute 'a' à la fin du tableau $tab.
+$tab[] = 'b';
+```
+
+Vérifier si une valeur existe.
+
+```
+in_array('valeur', $tab); // renvoie true ou false.
+```
+
+### Les tableaux associatifs
+
+```
+$tab_associatif = [
+    'a' => 'aa',
+    'b' => 'bb'
+];
+$tab_associatif['c'] = 'cc'; // Ajoute la clé 'c' avec la valeur 'cc'.
+echo $tab_associatif['a']; // ou var_dump($tab_associatif).
+```
+
+Pour rechercher la présence d'une clé.
+
+```
+array_key_exists('cle', $tab_associatif);
+```
+
+### Les boucles
+
+```
+for ($i = 0; $i < count($tab); $i++) {
+    echo $tab[$i];
+}
+```
+
+ou
+
+```
+foreach ($tab_associatif as $key => $value) {
+    echo $key . ' ' . $value;
+}
+```
+
+ou
+
+```
+$i = 0;
+while ($i < 10) {
+    echo $i;
+    $i++;
+}
+```
+
+### Conditions
+
+```
+if ($a > $b) {
+    echo 'a est plus grand que b';
+} elseif ($a == $b) {
+    echo 'a est égal à b';
+} else {
+    echo 'a est plus petit que b';
+}
+```
 
 ## Comprendre la classe *TwitterAPIExchange.php*
 
