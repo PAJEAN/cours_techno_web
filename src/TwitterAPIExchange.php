@@ -423,7 +423,7 @@ function getTweets($settings, $name){
     $json = $twitter->setGetfield($getfield)
         ->buildOauth($url, $requestMethod)
         ->performRequest();
-
+    
     return json_decode($json, true);
 }
 
