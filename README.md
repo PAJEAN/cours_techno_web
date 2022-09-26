@@ -10,7 +10,7 @@ Vous pouvez visualiser deux symboles importants "**[]**" et "**{}**". Les croche
 
 Par exemple, si vous voulez accéder à l'attribut *text* vous pouvez écrire:
 
-```json
+```javascript
 _json[0]["name"]; // permet d'accéder à la valeur name du premier élément du tableau.
 ```
 
