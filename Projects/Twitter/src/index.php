@@ -17,6 +17,12 @@
 
     <?php
 
+    $json = getFollowerCount($settings, "monsieurdream");
+
+    if (count($json) > 0) {
+        echo "<p>Cyprien a " . $json[0]["followers_count"] . " followers ! <br>";
+    }
+
     /* Récupérer les Tweets & réponses d'un compte (période maximale de 7jours). */
     $json = getTweets($settings, "monsieurdream");
 

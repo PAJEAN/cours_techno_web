@@ -427,6 +427,19 @@ function getTweets($settings, $name){
     return json_decode($json, true);
 }
 
+function getFollowerCount($settings, $name){
+    $url = "https://api.twitter.com/1.1/users/lookup.json";
+    $getfield = "?screen_name=" . $name;
+    $requestMethod = "GET";
+
+    $twitter = new TwitterAPIExchange($settings);
+    $json = $twitter->setGetfield($getfield)
+        ->buildOauth($url, $requestMethod)
+        ->performRequest();
+    var_dump($json);
+    return json_decode($json, true);
+}
+
 function getTrends($settings, $id){
     $url = "https://api.twitter.com/1.1/trends/place.json";
     $getfield = "?id=" . $id;
