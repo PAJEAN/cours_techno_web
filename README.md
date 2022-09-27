@@ -11,7 +11,7 @@ Vous pouvez visualiser deux symboles importants "**[]**" et "**{}**". Les croche
 Par exemple, si vous voulez accéder à l'attribut *text* vous pouvez écrire:
 
 ```javascript
-_json[0]["name"]; // permet d'accéder à la valeur name du premier élément du tableau.
+_json[0]["name"]; // Permet d'accéder à la valeur name du premier élément du tableau.
 ```
 
 où *_json* est une variable qui stocke le retour de l'API.
@@ -29,12 +29,13 @@ let my_bool = true; // ou false, sensible à la casse.
 
 ```javascript
 let my_tab = ['a', 'b'];
+console.log(my_tab[0]); // Affiche 'a'.
 ```
 
 Vérifier si une valeur existe au sein du tableau.
 
 ```javascript
-my_tab.includes('valeur'); // renvoie true ou false.
+my_tab.includes('valeur'); // Renvoie true ou false.
 ```
 
 Ajouter un élément.
@@ -55,6 +56,7 @@ my_tab.splice(3, 1); // Supprime 1 élément à partir de l'index 3.
 let my_dict = {'cle1': 'val1', 'cle2': 'val2'};
 my_dict['cle3'] = 'val3'; // Ajoute la clé 'cle3' avec la valeur 'val3'.
 console.log(my_dict); // Affiche le dictionnaire dans la console.
+console.log(my_dict['cle1']); // Affiche 'val1'.
 ```
 
 Pour rechercher la présence d'une clé.
@@ -101,13 +103,23 @@ if (a > b) {
 }
 ```
 
-### Manipulation du DOM
-
-Sélectionner une balise HTML en fonction d'un sélecteur CSS.
+### Fonctions
 
 ```javascript
-let my_html_tag  = document.querySelector('.my-class');
-let my_html_tags = document.querySelectorAll('.my-class');
+function name() {
+    console.log('Une fonction.');
+}
+
+name(); // Affiche 'Une fonction' dans la console.
+```
+
+### Manipulation du DOM
+
+Sélectionner une ou plusieurs balises HTML en fonction d'un sélecteur CSS.
+
+```javascript
+let my_html_tag  = document.querySelector('.my-class'); // Sélectionne la première balise.
+let my_html_tags = document.querySelectorAll('.my-class'); // Sélectionne toutes les balises.
 ```
 
 Ajouter/Supprimer une classe CSS à une balise HTML sélectionnée.
@@ -121,7 +133,7 @@ Ajouter un évènement à une balise HTML.
 
 ```javascript
 my_html_tag.addEventListener('click', function () {
-    console.log('My clic !');
+    console.log('Mon clic !');
 });
 ```
 
@@ -134,7 +146,7 @@ let my_new_html_tag = document.createElement('div');
 Modifier le contenu d'une balise HTML.
 
 ```javascript
-my_new_html_tag.innerHTML = 'My content';
+my_new_html_tag.innerHTML = 'Le contenu';
 ```
 
 Ajouter une balise HTML au sein d'une autre balise.
@@ -155,7 +167,7 @@ Requête GET.
 
 ```javascript
 axios({
-    method: 'get',
+    method: 'get', // ou 'post' par exemple.
     url: 'http://hp-api.herokuapp.com/api/characters',
 })
 .then((response) => {
