@@ -18,6 +18,8 @@ où *_json* est une variable qui stocke le retour de l'API.
 
 ## Les fondamentaux de Javascript
 
+Le code Javascript est compris ou importé depuis une balise &lt;<i>script</i>>. L'attribut *src* est utilisé lorsqu'un fichier *.js* doit être importé. Un cours complet sur le Javascript est disponible à cette adresse: https://github.com/PAJEAN/cours_javascript.
+
 ### Les variables
 
 ```javascript
