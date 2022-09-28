@@ -52,11 +52,14 @@ Supprimer un élément selon un index donné.
 my_tab.splice(3, 1); // Supprime 1 élément à partir de l'index 3.
 ```
 
-### Les tableaux associatifs
+### Les tableaux associatifs (ou dictionnaire)
+
+![Tableau vs Dictionnaire](Images/tableau_dictionnaire.png)
+
+Pour accéder aux valeurs d'un tableau, nous utilisons les indexes numériques. Tandis que pour les valeurs des dictionnaires, nous utilisons leurs clés (généralement des chaînes de caractères).
 
 ```javascript
 let my_dict = {'cle1': 'val1', 'cle2': 'val2'};
-my_dict['cle3'] = 'val3'; // Ajoute la clé 'cle3' avec la valeur 'val3'.
 console.log(my_dict); // Affiche le dictionnaire dans la console.
 console.log(my_dict['cle1']); // Affiche 'val1'.
 ```
@@ -66,6 +69,19 @@ Pour rechercher la présence d'une clé.
 ```javascript
 'cle' in my_dict;
 ```
+
+Pour ajouter une nouvelle clé/valeur.
+
+```javascript
+my_dict['cle3'] = 'val3'; // Ajoute la clé 'cle3' avec la valeur 'val3'.
+```
+
+Pour supprimer une clé/valeur.
+
+```javascript
+delete my_dict['cle1']; // Supprime la clé 'cle1' et sa valeur 'val1'.
+```
+
 
 ### Les boucles
 
