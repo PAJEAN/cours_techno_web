@@ -253,7 +253,7 @@
                     switch (thead.key) {
                         case 'image':
                             var img = document.createElement('img');
-                            img.src = character.image ? character.image: 'assets/choixpeau.jpg';
+                            img.src = character.image && this.is_connected ? character.image: 'assets/choixpeau.jpg';
                             // img.src = 'assets/choixpeau.jpg';
                             td.appendChild(img);
                             break;
@@ -473,12 +473,13 @@
 
             axios({
                 method: 'get',
-                url: 'http://hp-api.herokuapp.com/api/characters',
+                url: 'https://hp-api.onrender.com/api/characters',
             })
             .then((response) => {
                 this.origin_characters = response.data;
             })
             .catch((err) => {
+                this.is_connected = false;
                 this.origin_characters = getCharacters();
             })
             .finally(() => {
@@ -526,16 +527,17 @@
             this.content = this.shadowRoot.querySelector('#main');
             /* Attributes */
             this.thead = [
-                {key: 'image', name: 'Image'},
-                {key: 'name', name: 'Name'},
-                {key: 'dateOfBirth', name: 'Date of birth'},
-                {key: 'species', name: 'Specie'},
-                {key: 'gender', name: 'Gender'},
-                {key: 'eyeColour', name: 'Eye colour'},
-                {key: 'wizard', name: 'Wizard'},
-                {key: 'house', name: 'House'},
-                {key: 'patronus', name: 'Patronus'}
-            ]
+                { key: 'image', name: 'Image' },
+                { key: 'name', name: 'Name' },
+                { key: 'dateOfBirth', name: 'Date of birth' },
+                { key: 'species', name: 'Specie' },
+                { key: 'gender', name: 'Gender' },
+                { key: 'eyeColour', name: 'Eye colour' },
+                { key: 'wizard', name: 'Wizard' },
+                { key: 'house', name: 'House' },
+                { key: 'patronus', name: 'Patronus' }
+            ];
+            this.is_connected = true; // If no error to get data from API.
             this.origin_characters = [];
             this.characters = [];
             this.current_page = 0;
