@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    
+    <script>
+
+        // Fonction permettant d'effectuer autant de requêtes qu'il y a de pages.
+        async function getSpells(url, spells = []) {
+            try {
+                // Envoi d'une requête à l'API.
+                let response = await axios.get(url);
+                // Récupération des données.
+                let data = response.data;
+                // Stockage des données dans le tableau spells.
+                spells.push(data.results);
+                // Si une nouvelle page existe, alors on appelle de nouveau la fonction getAllSpells avec la nouvelle URL (l'URL fournie).
+                if (data.next) {
+                    getSpells(data.next, spells);
+                }
+                // Enfin on retourne le tableau spells.
+                return spells;
+            } catch (err) {
+                return new Error(err);
+            }
+        }
+
+        // Exécution de la fonction.
+        getSpells('https://api.open5e.com/spells/?dnd_class__icontains=bard')
+        .then((response) => {
+            // Récupération de tous les résultats.
+            console.log(response);
+            // Vous pouvez ensuite écrire votre code ici.
+            // La variable response est un tableau contenant toutes les pages de sorts (du barde ici).
+        }).catch((err) => {
+            console.log(err);
+        });
+
+    </script>
+
+</body>
+</html>

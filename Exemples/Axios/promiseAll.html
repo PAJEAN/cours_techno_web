@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <script>
+        // Fabrication des URLS.
+        let URLS = ["https://collectionapi.metmuseum.org/public/collection/v1/objects/1", "https://collectionapi.metmuseum.org/public/collection/v1/objects/2"];
+        // Réalisation des appels à l'API en fonction des URLS.
+        let all_promises = [];
+        for (let i = 0; i < URLS.length; i++) {
+            all_promises.push(axios.get(URLS[i]));
+        }
+        // Attendre le retour de l'API.
+        Promise.all([...all_promises])
+        .then(function(values) {
+            // Ici c'est le retour de l'API.
+            // values est un tableau avec l'ensemble des retours.
+            console.log(values);
+        });
+    </script>
+    
+</body>
+</html>

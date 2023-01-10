@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="my_form">
+        <label for="cheese">Do you like cheese?</label>
+        <input type="checkbox" name="cheese">
+
+        <label for="peas">Do you like peas?</label>
+        <input type="checkbox" name="peas">
+        
+        <input type="submit">
+    </form>
+    
+
+    <script>
+        // Récupérer le formulaire en JS.
+        let form = document.querySelector('#my_form');
+        // Ajouter un élément lorsqu'on soumet le formulaire.
+        form.addEventListener('submit', (e) => {
+            // On regarde si la checkbox name="cheese" est cochée.
+            console.log("Cheese: " + form.cheese.checked);
+            // On regarde si la checkbox name="peas" est cochée.
+            console.log("Peas: " + form.peas.checked);
+            // On bloque le rechargement de la page lors de l'envoi du formulaire.
+            e.preventDefault();
+        });
+
+    </script>
+
+</body>
+</html>
