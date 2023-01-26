@@ -9,6 +9,8 @@
 </head>
 <body>
     
+    <div id="spells"></div>
+
     <script>
 
         // Fonction permettant d'effectuer autant de requêtes qu'il y a de pages.
@@ -22,7 +24,7 @@
                 spells.push(data.results);
                 // Si une nouvelle page existe, alors on appelle de nouveau la fonction getAllSpells avec la nouvelle URL (l'URL fournie).
                 if (data.next) {
-                    getSpells(data.next, spells);
+                    await getSpells(data.next, spells);
                 }
                 // Enfin on retourne le tableau spells.
                 return spells;
@@ -33,9 +35,17 @@
 
         // Exécution de la fonction.
         getSpells('https://api.open5e.com/spells/?dnd_class__icontains=bard')
-        .then((response) => {
+        .then((responses) => {
             // Récupération de tous les résultats.
-            console.log(response);
+            let spells_div = document.querySelector('#spells');
+            console.log(responses);
+            for (let response of responses) {
+                for (let el of response) {
+                    let div = document.createElement('div');
+                    div.textContent = el.name;
+                    spells_div.appendChild(div);
+                }
+            }
             // Vous pouvez ensuite écrire votre code ici.
             // La variable response est un tableau contenant toutes les pages de sorts (du barde ici).
         }).catch((err) => {
